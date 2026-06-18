@@ -3,3 +3,33 @@ pandas
 numpy
 openpyxl
 plotly
+
+((((( How to Run the Application )))))))
+
+This repository contains a Python/Streamlit application for performing the CIF-CRITIC analysis.
+
+****** Requirements ******
+
+Python 3.10 or later is recommended.
+
+After downloading the repository, open PowerShell or Terminal in the project folder and install the required packages using:
+
+```bash
+py -m pip install -r requirements.txt
+```
+
+### Running the Application
+
+To launch the application, run the following command in the project folder:
+
+```bash
+py -m streamlit run ".\CIF_CRITIC_App.2026.py"
+```
+
+After running the command, the application will open locally in a web browser, usually at:
+
+```text
+http://localhost:8501
+```
+
+The Excel input file should not be included in the execution command. After the application opens, users can upload the Excel input file through the web interface. Once the analysis is completed, the output file can be downloaded directly from the application.
