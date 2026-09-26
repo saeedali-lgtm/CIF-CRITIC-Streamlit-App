@@ -6,9 +6,10 @@ import streamlit as st
 import plotly.express as px
 import core
 import service
+from ui_text import text, render_text, text_warning
 from core import create_swara_template, create_cocoso_template
 PLOTLY_AVAILABLE = True
-APP_TITLE = "CSF Research | Circular Spherical Fuzzy Sets"
+APP_TITLE = text('page_title')
 
 def calculate_uploaded(uploaded,module,p,radius_policy,lam=.5):
     with st.spinner("Validating your workbook and calculating results..."):
@@ -33,7 +34,7 @@ def export_cocoso_results(results):
     return service.export(results,results['_run_metadata'],'cocoso')
 
 def download_record(results,module):
-    st.download_button("Download reproducibility record",json.dumps(results['_run_metadata'],indent=2),file_name=module+'_run.json',mime='application/json',key=module+'_record')
+    st.download_button(text('download_record'),json.dumps(results['_run_metadata'],indent=2),file_name=module+'_run.json',mime='application/json',key=module+'_record')
 
 
 def apply_custom_style():
@@ -145,22 +146,11 @@ def st_plot(fig) -> None:
 
 def hero_section() -> None:
     # Keep the hero-card hook: Android supplies its own native identity and hides this block.
-    st.markdown("""<section class="hero-card" aria-label="CSF Research">
-<div class="research-heading">
-<div class="research-eyebrow"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="18" cy="18" r="15"/><path d="M3 18h30M18 3C7 11 7 25 18 33C29 25 29 11 18 3M6 9Q18 17 30 9M6 27Q18 19 30 27"/><circle fill="white" stroke="none" cx="29" cy="9" r="2.7"/></svg><span>CSF / RESEARCH</span></div>
-<h1>Circular Spherical Fuzzy Sets</h1>
-<p class="research-subtitle">Criterion weighting and alternative ranking under uncertainty.</p>
-<p class="research-methods">SWARA weighting &nbsp; · &nbsp; CoCoSo ranking</p>
-</div>
-<div class="research-credit"><div><span class="research-credit-label">Developer &amp; Concept Designer</span><strong>Dr. Saeed Alinejad</strong></div><span class="research-affiliation">Shiraz University, Iran</span></div>
-</section>""",unsafe_allow_html=True)
+    st.markdown(render_text('<section class="hero-card" aria-label="CSF Research">\n<div class="research-heading">\n<div class="research-eyebrow"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="18" cy="18" r="15"/><path d="M3 18h30M18 3C7 11 7 25 18 33C29 25 29 11 18 3M6 9Q18 17 30 9M6 27Q18 19 30 27"/><circle fill="white" stroke="none" cx="29" cy="9" r="2.7"/></svg><span>{{brand}}</span></div>\n<h1>{{title}}</h1>\n<p class="research-subtitle">{{subtitle}}</p>\n<p class="research-methods">{{methods}}</p>\n</div>\n<div class="research-credit"><div><span class="research-credit-label">{{developer_label}}</span><strong>{{developer_name}}</strong></div><span class="research-affiliation">{{affiliation}}</span></div>\n</section>'),unsafe_allow_html=True)
 
 
 def header_panels() -> None:
-    st.markdown("""<div class="info-grid">
-<div class="mini-card"><h4>CSF-SWARA</h4><p>Expert judgments are represented with circular spherical fuzzy numbers to calculate normalized criterion weights under uncertainty.</p></div>
-<div class="mini-card"><h4>CSF-CoCoSo</h4><p>Decision matrices and user-provided criterion weights are processed independently to rank alternatives using CoCoSo-based compromise scores.</p></div>
-</div>""",unsafe_allow_html=True)
+    st.markdown(render_text('<div class="info-grid">\n<div class="mini-card"><h4>{{swara_tab}}</h4><p>{{swara_about}}</p></div>\n<div class="mini-card"><h4>{{cocoso_tab}}</h4><p>{{cocoso_about}}</p></div>\n</div>'),unsafe_allow_html=True)
 
 
 def show_bar(df: pd.DataFrame, x: str, y: str, title: str, text_col: Optional[str] = None) -> None:
@@ -198,15 +188,15 @@ def show_heatmap(df: pd.DataFrame, title: str) -> None:
         st_df(df.round(6))
 
 def swara_tab() -> None:
-    st.markdown('<div class="glass-panel"><span class="section-label">CSF-SWARA Weighting</span><p class="caption-note">Upload a SWARA workbook to calculate criterion weights from expert linguistic judgments. This tab is independent from CoCoSo.</p></div>', unsafe_allow_html=True)
-    uploaded = st.file_uploader("1. Upload SWARA Excel workbook", type=["xlsx"], key="swara_upload", max_upload_size=10)
-    st.download_button("Download SWARA input template",data=create_swara_template(),file_name="csf_swara_input_template.xlsx",key="swara_template")
-    with st.expander("Calculation settings", expanded=False):
-        p=st.slider("Decision-maker attitude p",0.0,1.0,0.5,0.05,key="swara_p")
-        radius_policy=st.selectbox("Radius policy",["max","min"],key="swara_radius")
+    st.markdown(render_text('<div class="glass-panel"><span class="section-label">{{swara_intro_title}}</span><p class="caption-note">{{swara_intro}}</p></div>'), unsafe_allow_html=True)
+    uploaded = st.file_uploader(text('swara_upload'), type=["xlsx"], key="swara_upload", max_upload_size=10)
+    st.download_button(text('swara_template'),data=create_swara_template(),file_name="csf_swara_input_template.xlsx",key="swara_template")
+    with st.expander(text('calculation_settings'), expanded=False):
+        p=st.slider(text('attitude_label'),0.0,1.0,0.5,0.05,key="swara_p")
+        radius_policy=st.selectbox(text('radius_label'),["max","min"],key="swara_radius")
 
     if not uploaded:
-        st.info("Upload your SWARA workbook above to calculate results automatically. The downloadable template contains synthetic examples; replace them with your data.")
+        st.info(text('swara_empty'))
         return
     try:
         results = calculate_csf_swara(uploaded, p=p, radius_policy=radius_policy)
@@ -216,37 +206,37 @@ def swara_tab() -> None:
 
     weights = results["weights"]
     c1, c2, c3 = st.columns(3)
-    c1.metric("Criteria", len(weights))
-    c2.metric("Top criterion", str(weights.sort_values("Rank").iloc[0]["Criterion"]))
-    c3.metric("Top weight", f"{weights['Final_SWARA_Weight'].max():.4f}")
+    c1.metric(text('criteria_metric'), len(weights))
+    c2.metric(text('top_criterion'), str(weights.sort_values("Rank").iloc[0]["Criterion"]))
+    c3.metric(text('top_weight'), f"{weights['Final_SWARA_Weight'].max():.4f}")
 
-    st.subheader("2. Final CSF-SWARA weights")
+    st.subheader(text('swara_results'))
     st_df(weights.round(6))
-    show_bar(weights, x="Final_SWARA_Weight", y="Criterion", title="Final CSF-SWARA Criterion Weights", text_col="Final_SWARA_Weight")
+    show_bar(weights, x="Final_SWARA_Weight", y="Criterion", title=text('swara_chart'), text_col="Final_SWARA_Weight")
 
-    with st.expander("Aggregated CSF values and expert weights"):
-        st.markdown("**Aggregated criterion evaluations**")
+    with st.expander(text('swara_details')):
+        st.markdown(text('aggregated_evaluations'))
         st_df(results["aggregated"].round(6))
-        st.markdown("**Expert weights**")
+        st.markdown(text('expert_weights'))
         st_df(results["expert_weights"].round(6))
-        st.markdown("**Parsed input terms**")
+        st.markdown(text('parsed_terms'))
         st_df(results["terms"].round(6), height=360)
 
-    st.subheader("3. Download results")
+    st.subheader(text('download_section'))
     download_record(results,"swara")
-    st.download_button("Download SWARA results Excel", data=export_swara_results(results), file_name="csf_swara_results.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", type="primary")
+    st.download_button(text('swara_download'), data=export_swara_results(results), file_name="csf_swara_results.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", type="primary", key="swara_results_download")
 
 def cocoso_tab() -> None:
-    st.markdown('<div class="glass-panel"><span class="section-label">CSF-CoCoSo Ranking</span><p class="caption-note">Upload a CoCoSo workbook containing decision matrix sheets and a Criteria_Weights sheet. The weights may come from SWARA, CRITIC, AHP, or any other method.</p></div>', unsafe_allow_html=True)
-    uploaded = st.file_uploader("1. Upload CoCoSo Excel workbook", type=["xlsx"], key="cocoso_upload", max_upload_size=10)
-    st.download_button("Download CoCoSo input template",data=create_cocoso_template(),file_name="csf_cocoso_input_template.xlsx",key="cocoso_template")
-    with st.expander("Calculation settings", expanded=False):
-        p=st.slider("Decision-maker attitude p",0.0,1.0,0.5,0.05,key="cocoso_p")
-        radius_policy=st.selectbox("Radius policy",["max","min"],key="cocoso_radius")
-        lam=st.slider("CoCoSo lambda",0.0,1.0,0.5,0.05,key="cocoso_lambda")
+    st.markdown(render_text('<div class="glass-panel"><span class="section-label">{{cocoso_intro_title}}</span><p class="caption-note">{{cocoso_intro}}</p></div>'), unsafe_allow_html=True)
+    uploaded = st.file_uploader(text('cocoso_upload'), type=["xlsx"], key="cocoso_upload", max_upload_size=10)
+    st.download_button(text('cocoso_template'),data=create_cocoso_template(),file_name="csf_cocoso_input_template.xlsx",key="cocoso_template")
+    with st.expander(text('calculation_settings'), expanded=False):
+        p=st.slider(text('attitude_label'),0.0,1.0,0.5,0.05,key="cocoso_p")
+        radius_policy=st.selectbox(text('radius_label'),["max","min"],key="cocoso_radius")
+        lam=st.slider(text('lambda_label'),0.0,1.0,0.5,0.05,key="cocoso_lambda")
 
     if not uploaded:
-        st.info("Upload your CoCoSo workbook above to calculate results automatically. The downloadable template contains synthetic examples; replace them with your data.")
+        st.info(text('cocoso_empty'))
         return
     try:
         results = calculate_csf_cocoso(uploaded, p=p, lambda_value=lam, radius_policy=radius_policy)
@@ -256,45 +246,50 @@ def cocoso_tab() -> None:
 
     ranking = results["results"]
     c1, c2, c3 = st.columns(3)
-    c1.metric("Alternatives", len(ranking))
-    c2.metric("Best alternative", str(ranking.sort_values("Rank").iloc[0]["Alternative"]))
-    c3.metric("Best score", f"{ranking['Final_Crisp_Score'].max():.4f}")
+    c1.metric(text('alternatives_metric'), len(ranking))
+    c2.metric(text('best_alternative'), str(ranking.sort_values("Rank").iloc[0]["Alternative"]))
+    c3.metric(text('best_score'), f"{ranking['Final_Crisp_Score'].max():.4f}")
 
-    st.subheader("2. Final CSF-CoCoSo ranking")
+    st.subheader(text('cocoso_results'))
     st_df(ranking.round(6))
-    show_bar(ranking, x="Final_Crisp_Score", y="Alternative", title="Final CSF-CoCoSo Alternative Ranking", text_col="Final_Crisp_Score")
+    show_bar(ranking, x="Final_Crisp_Score", y="Alternative", title=text('cocoso_chart'), text_col="Final_Crisp_Score")
 
-    with st.expander("Criterion weights, types, and matrices"):
-        st.markdown("**Criterion weights used in CoCoSo**")
+    with st.expander(text('cocoso_details')):
+        st.markdown(text('criterion_weights'))
         st_df(results["criteria_weights"].round(6))
-        st.markdown("**Criterion types**")
+        st.markdown(text('criterion_types'))
         st_df(results["criteria_types"])
-        st.markdown("**Expert weights**")
+        st.markdown(text('expert_weights'))
         st_df(results["expert_weights"].round(6))
-        st.markdown("**Aggregated score matrix**")
-        show_heatmap(results["matrices"]["optimistic_score_matrix"].round(6), "Optimistic score matrix")
-        show_heatmap(results["matrices"]["pessimistic_score_matrix"].round(6), "Pessimistic score matrix")
+        st.markdown(text('score_matrix'))
+        show_heatmap(results["matrices"]["optimistic_score_matrix"].round(6), text('optimistic_chart'))
+        show_heatmap(results["matrices"]["pessimistic_score_matrix"].round(6), text('pessimistic_chart'))
 
-    st.subheader("3. Download results")
+    st.subheader(text('download_section'))
     download_record(results,"cocoso")
-    st.download_button("Download CoCoSo results Excel", data=export_cocoso_results(results), file_name="csf_cocoso_results.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", type="primary")
+    st.download_button(text('cocoso_download'), data=export_cocoso_results(results), file_name="csf_cocoso_results.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", type="primary", key="cocoso_results_download")
 
 
 
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, page_icon="C", layout="wide")
     apply_custom_style()
+    warning = text_warning()
+    if warning:
+        st.warning(warning)
     hero_section()
-    tab_swara, tab_cocoso = st.tabs(["CSF-SWARA", "CSF-CoCoSo"])
+    if text("extra_note").strip():
+        st.write(text("extra_note"))
+    tab_swara, tab_cocoso = st.tabs([text('swara_tab'), text('cocoso_tab')])
     with tab_swara:
         swara_tab()
     with tab_cocoso:
         cocoso_tab()
-    with st.expander("About this research tool"):
+    with st.expander(text('about_section')):
         header_panels()
-    with st.expander("Method version and data processing"):
-        st.write("This release preserves the equations of the supplied Python implementation. It differs from the previously revised maturity workbook; see METHOD_NOTES.md for the documented choices and limitations.")
-        st.write("Local execution processes uploaded workbooks on this computer. A hosted deployment processes them on its server. The app does not deliberately save uploaded workbooks.")
+    with st.expander(text('method_section')):
+        st.write(text('method_note'))
+        st.write(text('privacy_note'))
 
 if __name__ == "__main__":
     main()
