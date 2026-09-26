@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Cite this software release and the associated methodology. Add the persistent archive DOI to the deposited release when available."
+type: software
+title: "CSF Research App: Circular Spherical Fuzzy SWARA and CoCoSo"
+version: 1.0.0
+date-released: 2026-09-26
+authors:
+  - family-names: Alinejad
+    given-names: Saeed
+    affiliation: "Shiraz University, Iran"
+abstract: "Research interface and reproducibility package for the author's CSF-SWARA and CSF-CoCoSo implementation."
+keywords:
+  - circular spherical fuzzy
+  - SWARA
+  - CoCoSo
+  - multicriteria decision making

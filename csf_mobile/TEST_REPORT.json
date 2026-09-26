@@ -1,0 +1,8 @@
+{
+  "pytest": "12 passed",
+  "responsive_browser_viewport": "390 x 844",
+  "physical_android_device": "not tested",
+  "deployment": "Not public; owner hosting account or server access required",
+  "package_type": "mobile web server source; not APK",
+  "math": "Original author core preserved"
+}
