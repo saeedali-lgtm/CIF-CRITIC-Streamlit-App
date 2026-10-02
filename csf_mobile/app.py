@@ -118,6 +118,28 @@ def apply_custom_style():
     </style>""",unsafe_allow_html=True)
 
 
+
+def apply_dream_style():
+    st.markdown("""<style>
+:root { --ink:#173e3b; --muted:#597565; --line:#dce3d8; --green:#075b57; --gold:#c7a34e; --cif-emerald:#0b625a; --cif-emerald-dark:#075b57; --cif-forest:#073d3b; --cif-lapis:#073d3b; --cif-ink:#173e3b; --cif-text:#173e3b; --cif-muted:#597565; --cif-gold:#c7a34e; }
+.stApp {background:radial-gradient(ellipse at 90% 5%,#ede4cc80,transparent 45%),radial-gradient(ellipse at 15% 75%,#d7e9df70,transparent 50%),#f6f8f4 !important;}
+.hero-card {border:1px solid #c7a34e70 !important;box-shadow:0 8px 30px #073d3b18 !important;border-radius:20px !important;background:linear-gradient(115deg,#083f3b,#0b625a) !important;}
+.research-heading {background:radial-gradient(ellipse at 90% 20%,#287b6665,transparent 55%),linear-gradient(115deg,#083f3b,#0b625a) !important;}
+.research-subtitle,.hero-subtitle {color:#cee1d7 !important;}
+.hero-title,.hero-topline {color:#fff8e8 !important;}.research-eyebrow,.research-methods{color:#ead39b !important;}
+.research-credit {border-top:2px solid #c7a34e;background:#fffdf6 !important;}
+.glass-panel,.mini-card,[data-testid="stMetric"],[data-testid="stExpander"] {background:#fffefb !important;border:1px solid #dce3d8 !important;border-radius:16px !important;box-shadow:0 5px 20px #073d3b08 !important;}
+[data-testid="stFileUploaderDropzone"] {background:linear-gradient(145deg,#fcfdf9,#f0f6ee) !important;border:1px dashed #aebfb3 !important;border-radius:12px !important;}
+[data-testid="stButton"] button,[data-testid="stDownloadButton"] button {background:linear-gradient(110deg,#b9933e,#ead395 55%,#c6a04a) !important;border:1px solid #b28d39 !important;color:#173e32 !important;border-radius:9px !important;box-shadow:0 4px 12px #aa873920 !important;}
+[data-testid="stButton"] button p,[data-testid="stDownloadButton"] button p {color:#173e32 !important;}
+[role="tab"][aria-selected="true"] {background:#075b57 !important;color:#fff8e8 !important;border-bottom:2px solid #c7a34e !important;}
+[role="tab"][aria-selected="true"] p {color:#fff8e8 !important;}
+[data-testid="stSidebar"] {background:linear-gradient(155deg,#073d3b,#075b57) !important;}
+button:focus-visible,a:focus-visible {outline:3px solid #a3802b !important;outline-offset:3px;}
+@media(prefers-reduced-motion:reduce) {* {transition:none!important;animation:none!important;}}
+</style>""", unsafe_allow_html=True)
+
+
 def st_df(df: pd.DataFrame, height: Optional[int] = None) -> None:
     """Render dataframes safely across Streamlit versions.
 
@@ -274,6 +296,7 @@ def cocoso_tab() -> None:
 def main() -> None:
     st.set_page_config(page_title=APP_TITLE, page_icon="C", layout="wide")
     apply_custom_style()
+    apply_dream_style()
     warning = text_warning()
     if warning:
         st.warning(warning)
