@@ -16,16 +16,6 @@ The Dream theme uses deep teal, champagne gold, and light research workspaces. W
 
 Use the template for the selected method, import Excel, review parameters, calculate, and export results before closing. Examples are synthetic. Review the method notes and release validation report. Numerical agreement with the reference implementation does not establish scientific validation. Signing keys and credentials are excluded. No new license is assigned to the research code; third-party license notices are retained.
 
-## دسترسی سریع برای ویرایش نوشته‌ها
-
-- **[ویرایش مستقیم نوشته‌های سایت و محتوای اپ](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/edit/main/content.js)**
-- **[راهنمای فارسی و انگلیسی](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/blob/main/EDIT_CONTENT_2027.md)**
-- **[ویرایش نوشته‌های نسخهٔ Streamlit](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/edit/main/csf_mobile/ui_texts.json)**
-
-برای تغییر نوشته‌های سایت، وارد حساب مالک مخزن شوید، لینک اول را باز کنید، متن داخل کوتیشن‌ها را تغییر دهید و **Commit changes** را روی `main` ثبت کنید. سپس پس از موفق‌شدن انتشار سایت در Actions، صفحه را تازه کنید. دسترسی ویرایش برای مالک یا همکار دارای مجوز است؛ مخاطبان عمومی می‌توانند کد و راهنما را ببینند.
-
-تغییر گیت‌هاب روی **سایت** اعمال می‌شود. **اپ اندروید آفلاین** متن‌ها را داخل APK نگه می‌دارد؛ برای تغییر آن باید فایل `content.js` تازه در کد اندروید قرار گیرد و APK جدید با امضای اصلی ساخته شود. **ویندوز** نیز مستقل است و خودکار از گیت‌هاب به‌روز نمی‌شود. جزئیات در راهنمای بالا آمده است.
-
 ## فارسی
 
 نسخهٔ Dream با سبز کله‌غازی و طلایی شامپاینی برای وب، اندروید و ویندوز آماده شده است. برای استفادهٔ آنلاین لینک بالا را باز کنید؛ فایل نصب اندروید، نسخهٔ قابل‌حمل ویندوز و بستهٔ کامل در بخش Releases قرار دارند.
