@@ -2,6 +2,18 @@
 
 ## فارسی
 
+## دسترسی سریع برای ویرایش نوشته‌ها
+
+- **[ویرایش مستقیم نوشته‌های سایت و محتوای اپ](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/edit/main/content.js)**
+- **[راهنمای فارسی و انگلیسی](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/blob/main/EDIT_CONTENT_2027.md)**
+- **[ویرایش نوشته‌های نسخهٔ Streamlit](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/edit/main/csf_mobile/ui_texts.json)**
+
+برای تغییر نوشته‌های سایت، وارد حساب مالک مخزن شوید، لینک اول را باز کنید، متن داخل کوتیشن‌ها را تغییر دهید و **Commit changes** را روی `main` ثبت کنید. سپس پس از موفق‌شدن انتشار سایت در Actions، صفحه را تازه کنید. دسترسی ویرایش برای مالک یا همکار دارای مجوز است؛ مخاطبان عمومی می‌توانند کد و راهنما را ببینند.
+
+تغییر گیت‌هاب روی **سایت** اعمال می‌شود. **اپ اندروید آفلاین** متن‌ها را داخل APK نگه می‌دارد؛ برای تغییر آن باید فایل `content.js` تازه در کد اندروید قرار گیرد و APK جدید با امضای اصلی ساخته شود. **ویندوز** نیز مستقل است و خودکار از گیت‌هاب به‌روز نمی‌شود. جزئیات در راهنمای بالا آمده است.
+
+
+
 متن‌های نسخه مستقل وب در فایل **content.js در ریشه مخزن** قرار دارند؛ فایل قدیمی `csf_mobile/ui_texts.json` مربوط به نسخه Streamlit است.
 
 1. در گیت‌هاب فایل `content.js` را باز کنید و دکمه مداد (Edit) را بزنید.
@@ -51,3 +63,27 @@ Change text values, preserve JavaScript syntax, and commit to `main`. After the 
 Add or remove objects in `sections` (below the workspace) or `helpSections` (in the help dialog). Each object supports `title`, `body`, and `enabled`. Set `enabled: false` to hide a section. Content is rendered as plain text, not HTML. Missing main keys use defaults; an empty string clears a configured label.
 
 The Android app bundles these files for offline use. Website edits do not update an installed APK automatically. Copy the updated web files into both source locations listed above, increment the Android version code, and rebuild using the original private signing key, following `android/README.md`. Changes to calculations or input formats require code changes and appropriate tests.
+
+## مثال کوتاه برای تغییر متن
+
+برای تغییر توضیح زیر عنوان سوارا، مقدار `sub` در بخش `methods.swara` را عوض کنید:
+
+```javascript
+"sub": "Your revised description of criterion weighting."
+```
+
+برای تغییر عنوان دکمهٔ محاسبه، مقدار `action` همان بخش را ویرایش کنید. برای عنوان سربرگ از `fuzzySetName` و برای نام توسعه‌دهنده از `developerCredit` استفاده کنید. برای افزودن توضیح عمومی از `sections` و برای توضیح در پنجرهٔ راهنما از `helpSections` استفاده کنید. نام کلیدها را حفظ کنید. متن فارسی پذیرفته می‌شود، اما چیدمان فعلی برای انگلیسی طراحی شده است.
+
+## نوشته‌های ویندوز
+
+بستهٔ **Full Source** (فایل 03 آخرین انتشار) را استخراج کنید. کد ویندوز در `CSF_Research_v2/windows_app/app.py` قرار دارد. عنوان‌ها و توضیحات نمایشی در این فایل‌اند؛ بخش‌های محاسبات را هنگام تغییر متن ویرایش نکنید. برای آزمایش، طبق README همین پوشه برنامه را با Python اجرا کنید.
+
+برای نسخهٔ قابل‌حمل موجود (فایل 06)، ابتدا از کل پوشه نسخهٔ پشتیبان بگیرید. فایل نمایشی در `CSF_Research_App/_internal/app.py` قرار دارد. تغییر نوشته‌های همین فایل در اجرای بعدی برنامه اعمال می‌شود. این روش مربوط به نوشته‌های رابط است؛ تغییر فایل اجرایی، وابستگی‌ها یا منطق محاسباتی به ساخت و بررسی جداگانه نیاز دارد.
+
+## بازگشت به نوشته‌های قبلی
+
+قبل از تغییر، نسخهٔ فایل را ذخیره کنید. تاریخچهٔ فایل در گیت‌هاب (**History**) امکان مشاهدهٔ نوشته‌های قبلی را دارد. اگر سایت بعد از تغییر باز نشد، علامت‌های نقل‌قول، ویرگول‌ها و بسته‌شدن آکولادها را کنترل کنید یا فایل را به نسخهٔ قبلی بازگردانید.
+
+## Windows text editing (English)
+
+The full source release includes `CSF_Research_v2/windows_app/app.py`. For the existing portable Windows edition, interface text is loaded from `CSF_Research_App/_internal/app.py`; back up the folder before editing and restart the app after saving. This does not synchronize with GitHub or Android. Keep calculation code and dependencies unchanged when editing display text.
