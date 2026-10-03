@@ -137,6 +137,10 @@ def apply_dream_style():
 [data-testid="stSidebar"] {background:linear-gradient(155deg,#073d3b,#075b57) !important;}
 button:focus-visible,a:focus-visible {outline:3px solid #a3802b !important;outline-offset:3px;}
 @media(prefers-reduced-motion:reduce) {* {transition:none!important;animation:none!important;}}
+
+.hero-card,.research-heading{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 22% 0%,#499a8755,transparent 58%),linear-gradient(170deg,#176c60,#0a514a 40%,#073c39) !important;box-shadow:inset 0 2px 0 #ffffff1f,inset 0 -7px 13px #001c2540,0 10px 22px #073d3b1c !important;border-color:#bb9847 !important;}
+.hero-card:after,.research-heading:after{content:'';position:absolute;right:24px;top:24px;width:92px;height:92px;border:1px solid #d8bf7770;border-radius:50%;opacity:.22;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 30% 25%,#e9d39890,#0b5243a8 60%,#032d2bcc);box-shadow:inset -12px -8px 18px #001b2b90,inset 3px 4px 9px #fff4be50,0 9px 15px #00232365;}
+.hero-title,.hero-card h1{text-shadow:0 2px 3px #001e20a0 !important;}
 </style>""", unsafe_allow_html=True)
 
 
