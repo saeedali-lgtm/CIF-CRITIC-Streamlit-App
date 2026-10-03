@@ -6,7 +6,7 @@ window.CSF_CONTENT = {
   "developerCredit": "Technique & software developed by Dr. Saeed Alinejad",
   "affiliation": "Shiraz University, Iran",
   "authorName": "Dr. Saeed Alinejad",
-  "footerCredit": "Developed by Dr. Saeed Alinejad · Shiraz University",
+  "footerCredit": "Developed by Dr. Saeed Alinejad and Dr. Zahra Khoshsepehr · Shiraz University",
   "labels": {
     "workspace": "ANALYSIS WORKSPACE",
     "eyebrow": "MULTI-CRITERIA DECISION ANALYSIS",
