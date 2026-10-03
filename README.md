@@ -6,7 +6,7 @@ Developed by Dr. Saeed Alinejad, Shiraz University, Iran.
 
 [Open the web application](https://saeedali-lgtm.github.io/CIF-CRITIC-Streamlit-App/) · [Downloads and installation files](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/releases/latest)
 
-The Dream theme uses deep teal, champagne gold, and light research workspaces. Web and Android version 2.0.2 share the same bundled interface. Calculations are performed on the device.
+The Dream theme uses deep teal, champagne gold, and light research workspaces. Web and Android version 2.0.3 share the same bundled interface, with a sculpted three-dimensional header. Calculations are performed on the device.
 
 - Root files: standalone web application, hosted through GitHub Pages.
 - Release file 03 includes Android source and build instructions. Android 8+; original signing key required for compatible updates.
