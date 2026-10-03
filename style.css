@@ -62,3 +62,14 @@ th{background:#f1f5ed}tbody tr:hover{background:#faf7ed}dialog{border:1px solid 
 .main-footer{border-top-color:#ded7c5}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 @media(max-width:600px){.sidebar{border-right:0}.nav-item.active{border-color:#cfad5440}.topbar:after{width:120px;right:10px;top:20px}.topbar{padding-top:20px;padding-bottom:18px}.project-identity strong{font-size:21px}.project-identity>span{font-size:13px}.card{border-radius:14px}.empty-result:before{width:180px;height:180px;left:calc(50% - 90px)}}
+
+/* Sculpted 3D header — static and accessible */
+.topbar{isolation:isolate;position:relative;overflow:hidden;background:radial-gradient(ellipse at 22% 0%,#499a8755,transparent 58%),linear-gradient(170deg,#176c60 0%,#0a514a 40%,#073c39 100%);border-top:1px solid #86c3a355;border-bottom:3px solid #bb9847;box-shadow:inset 0 2px 0 #ffffff1f,inset 0 -7px 13px #001c2540,0 10px 22px #073d3b1c}
+.topbar:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg,transparent 45%,#ffffff08 45.5%,transparent 68%),linear-gradient(0deg,#e9d09333 0px,#b18a3533 2px,transparent 3px)}
+.topbar:after{content:'';position:absolute;right:185px;top:12px;width:86px;height:86px;transform:rotate(-12deg);border:1px solid #d8bf7770;border-radius:50%;pointer-events:none;z-index:-1;opacity:.65;background:repeating-linear-gradient(0deg,transparent 0 18px,#e8ce8630 19px,transparent 20px),radial-gradient(ellipse at 32% 25%,#e9d3986b 0,#75ad8b24 24%,#0b5243a8 65%,#032d2bcc 100%);box-shadow:inset -12px -8px 18px #001b2b90,inset 3px 4px 9px #fff4be50,0 9px 15px #00232365,0 0 0 5px #e4c77e09}
+.project-identity{position:relative;z-index:1}.project-identity strong{color:#fff9e9;text-shadow:0 1px 0 #ffffff18,0 2px 3px #001e20a0}.project-identity>span{color:#efd8a1;text-shadow:0 1px 2px #001e2040}
+.topbar .quiet{background:linear-gradient(160deg,#ffffff0f,#001f2720);border-color:#d6bc7065;box-shadow:inset 0 1px 0 #ffffff1b,0 3px 7px #001e2525;color:#f4e4bb}
+.brand svg{filter:drop-shadow(0 2px 1px #002424) drop-shadow(0 0 5px #e6ca7950)}
+@media(min-width:1100px){.project-identity{max-width:calc(100% - 295px)}}
+@media(max-width:1099px){.topbar:after{right:20px;opacity:.22;width:78px;height:78px}.topbar .quiet{position:relative;z-index:2}}
+@media(max-width:600px){.topbar:after{right:12px;top:18px;width:72px;height:72px;opacity:.18}.project-identity{max-width:100%}.topbar{box-shadow:inset 0 2px 0 #ffffff1f,inset 0 -6px 12px #001c2540,0 6px 16px #073d3b1c}}
