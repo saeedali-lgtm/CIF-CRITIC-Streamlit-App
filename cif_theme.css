@@ -47,3 +47,9 @@
 [data-testid="stDataFrame"]{border:1px solid #c9d7c2;border-radius:10px;overflow:hidden}
 @media(max-width:600px){[data-testid="stFileUploaderDropzone"]{padding:16px 12px!important;gap:12px!important}[data-testid="stFileUploaderDropzoneInstructions"]{min-width:0!important}[data-testid="stFileUploaderDropzone"] button{min-width:105px}}
 
+/* Streamlit's React Aria controls (1.64+) use different markup from BaseWeb. */
+[data-testid="stSelectbox"] [role="group"],[data-testid="stMultiSelect"] [role="group"],.react-aria-ComboBox [role="group"]{background:#fffef8!important;color:#213e36!important;border-color:#bacbb8!important}
+[data-testid="stSelectbox"] button,[data-testid="stMultiSelect"] button,.react-aria-ComboBox button{background:#e8f1e2!important;color:#213e36!important;border-color:#bacbb8!important}
+.react-aria-Popover,.react-aria-ListBox,.react-aria-ListBoxItem{background:#fffef8!important;color:#213e36!important}
+.react-aria-ListBoxItem[data-focused],.react-aria-ListBoxItem[data-selected]{background:#e3efdf!important;color:#123e34!important}
+
