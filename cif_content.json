@@ -1,0 +1,11 @@
+{
+  "title": "CIF Decision Analytics Suite",
+  "developer": "Technique & software developed by Dr. Saeed Alinejad",
+  "affiliation": "Shiraz University · Iran",
+  "description": "Explore causal relationships, derive criterion weights and compare alternatives with circular intuitionistic fuzzy decision methods. Each method has its own Excel input, analysis workspace and downloadable results.",
+  "methods": [
+    {"name": "CIF–DEMATEL", "category": "UNDERSTAND INFLUENCE", "description": "Examine direct and total influences, identify prominent criteria and distinguish cause and effect groups.", "output": "Total-relation matrix · Causal map"},
+    {"name": "CIF–SWARA", "category": "ESTABLISH PRIORITIES", "description": "Aggregate expert evaluations and calculate normalized criterion weights with transparent intermediate results.", "output": "Criterion weights · Priority profile"},
+    {"name": "CIF–WASPAS", "category": "COMPARE ALTERNATIVES", "description": "Evaluate alternatives through weighted-sum and weighted-product analysis with optimistic and pessimistic scenarios.", "output": "Alternative scores · Comparative ranking"}
+  ]
+}

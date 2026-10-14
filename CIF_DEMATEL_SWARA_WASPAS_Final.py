@@ -13,6 +13,26 @@ The visual shell follows the emerald, forest-green, and warm-gold CIF-WASPAS des
 from __future__ import annotations
 
 
+
+def validate_uploaded_workbook(upload):
+    import zipfile
+    from pathlib import Path
+    if upload is None:
+        return
+    data=upload.getvalue()
+    if len(data)>10*1024*1024:
+        raise ValueError("Workbook exceeds the 10 MB upload limit.")
+    if Path(upload.name).suffix.lower()=='.xlsx':
+        with zipfile.ZipFile(BytesIO(data)) as container:
+            entries=container.infolist()
+            if len(entries)>10000 or sum(x.file_size for x in entries)>100*1024*1024:
+                raise ValueError("Workbook is too large when expanded.")
+            if 'xl/workbook.xml' not in container.namelist():
+                raise ValueError("This is not a valid Excel workbook.")
+            if any(x.filename.lower().endswith('vbaproject.bin') for x in entries):
+                raise ValueError("Macro-enabled workbooks are not accepted.")
+    upload.seek(0)
+
 # ============================== DEMATEL MODULE ==============================
 import os
 os.environ.setdefault('STREAMLIT_THEME_BASE', 'light')
@@ -264,6 +284,7 @@ def dematel_extract_expert_matrix(df: pd.DataFrame) -> Tuple[List[str], np.ndarr
     return (criteria, term_matrix, pair_matrix)
 
 def dematel_read_excel_file(uploaded_file) -> Tuple[Dict[str, pd.DataFrame], Optional[pd.DataFrame], List[str]]:
+    validate_uploaded_workbook(uploaded_file)
     sheets = pd.read_excel(uploaded_file, sheet_name=None, dtype=object)
     expert_sheets: Dict[str, pd.DataFrame] = {}
     expert_info = None
@@ -801,6 +822,7 @@ def swara_extract_expert_vector(df: pd.DataFrame, scale: Dict[str, Tuple[float, 
     raise ValueError('Invalid SWARA expert sheet. Use two columns Criterion/Evaluation or one row with linguistic terms under criteria columns.')
 
 def swara_read_excel_file(uploaded_file, scale: Dict[str, Tuple[float, float]]) -> Tuple[Dict[str, pd.DataFrame], Optional[pd.DataFrame], List[str]]:
+    validate_uploaded_workbook(uploaded_file)
     sheets = pd.read_excel(uploaded_file, sheet_name=None, dtype=object)
     expert_sheets: Dict[str, pd.DataFrame] = {}
     expert_info = None
@@ -1422,6 +1444,7 @@ def waspas_is_aux_sheet(name: str) -> bool:
     return any((word in key for word in waspas_AUX_SHEET_KEYWORDS))
 
 def waspas_read_waspas_workbook(uploaded_file):
+    validate_uploaded_workbook(uploaded_file)
     sheets = pd.read_excel(uploaded_file, sheet_name=None, dtype=object)
     expert_sheets: Dict[str, pd.DataFrame] = {}
     expert_info = None
@@ -1852,7 +1875,7 @@ def waspas_is_running_inside_streamlit() -> bool:
 
 SUITE_APP_TITLE = "CIF-DEMATEL / CIF-SWARA / CIF-WASPAS | Executive Suite"
 SUITE_PORT = 8803
-SUITE_SERVER_ADDRESS = "0.0.0.0"
+SUITE_SERVER_ADDRESS = "127.0.0.1"
 
 
 def suite_df(df, height=None):
@@ -1870,82 +1893,23 @@ def suite_df(df, height=None):
 
 
 def suite_hamburger_menu():
-    st.markdown(
-        """
-        <details class="hamburger-shell">
-            <summary>
-                <span class="hamburger-icon"><span></span><span></span><span></span></span>
-                <span class="hamburger-title">CIF Decision Suite</span>
-                <span class="hamburger-pill">DEMATEL · SWARA · WASPAS</span>
-            </summary>
-            <div class="hamburger-links">
-                <a href="#suite-overview">Suite Overview</a>
-                <a href="#dematel-workflow">CIF-DEMATEL</a>
-                <a href="#swara-workflow">CIF-SWARA</a>
-                <a href="#cif-waspas-workflow">CIF-WASPAS</a>
-            </div>
-        </details>
-        """,
-        unsafe_allow_html=True,
-    )
+    from cif_interface import menu
+    menu()
 
 
 def suite_hero():
-    st.markdown(
-        """
-        <div class="hero-card">
-            <div class="hero-topline">Circular Intuitionistic Fuzzy Decision Analytics</div>
-            <div class="hero-title">CIF Decision Analytics Suite</div>
-            <p class="hero-subtitle">
-                An integrated platform for three independent circular intuitionistic fuzzy techniques:
-                CIF-DEMATEL maps causal relationships and cause/effect groups, CIF-SWARA derives criterion weights,
-                and CIF-WASPAS ranks alternatives through weighted-sum and weighted-product analysis.
-                Upload each method's workbook in its dedicated tab and run the calculations independently.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    from cif_interface import hero
+    hero()
 
 
 def suite_header_cards():
-    st.markdown(
-        """
-        <div id="suite-overview" class="info-grid">
-            <div class="mini-card developer-card">
-                <h4>Developer & Concept Designer</h4>
-                <p><strong>Dr. Saeed Alinejad - Shiraz University, Iran</strong></p>
-                <p>Integrated circular intuitionistic fuzzy decision analytics.</p>
-            </div>
-            <div class="mini-card">
-                <h4>CIF-DEMATEL</h4>
-                <p>Models direct causal influences, total relations, prominence, relation, and cause/effect groups.</p>
-            </div>
-            <div class="mini-card">
-                <h4>CIF-SWARA</h4>
-                <p>Aggregates expert criterion judgments and calculates normalized criterion weights.</p>
-            </div>
-            <div class="mini-card">
-                <h4>CIF-WASPAS</h4>
-                <p>Ranks alternatives through optimistic and pessimistic circular decision matrices and integrated utilities.</p>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    from cif_interface import cards
+    cards()
 
 
 def suite_upload_zone(title: str, description: str, badge: str):
-    st.markdown(
-        f"""
-        <div class="upload-zone-card">
-            <div class="upload-zone-badge">{badge}</div>
-            <div class="upload-zone-title">{title}</div>
-            <div class="upload-zone-description">{description}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    from cif_interface import upload_zone
+    upload_zone(title, description, badge)
 
 
 def suite_sidebar():
@@ -2329,6 +2293,8 @@ def combined_main():
         initial_sidebar_state="expanded",
     )
     waspas_apply_custom_style()
+    from cif_interface import apply_theme
+    apply_theme()
     suite_hamburger_menu()
     suite_hero()
     st.markdown('<div class="three-d-divider"></div>', unsafe_allow_html=True)
@@ -2346,7 +2312,7 @@ def combined_main():
     st.markdown(
         """
         <div class="footer-note">
-            CIF Decision Analytics Suite — three independent circular intuitionistic fuzzy methods in one emerald, forest, and gold interface.
+            CIF Decision Analytics Suite · Circular Intuitionistic Fuzzy Sets · Independent analysis and Excel reports
         </div>
         """,
         unsafe_allow_html=True,

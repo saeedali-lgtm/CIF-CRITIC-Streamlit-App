@@ -5,3 +5,14 @@ env/
 venv/
 *.log
 .DS_Store
+
+# Credentials and private signing material
+*.p12
+*.pfx
+*.jks
+*.keystore
+.env
+.env.*
+secrets.toml
+*password*.txt
+.android-signing/

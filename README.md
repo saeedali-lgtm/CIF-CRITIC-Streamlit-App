@@ -1,3 +1,11 @@
+## CIF-DEMATEL / CIF-SWARA / CIF-WASPAS
+
+The complete Python application remains available as
+[`CIF_DEMATEL_SWARA_WASPAS_Final.py`](CIF_DEMATEL_SWARA_WASPAS_Final.py),
+matching the filename in the paper's supplementary material.
+[CIF installation and usage](CIF_README.md).
+This suite is separate from the CSF/WISE application below.
+
 # CSF Research — Dream Edition
 
 Circular Spherical Fuzzy Sets (CSF) · CSF–SWARA weighting and CSF–CoCoSo ranking
