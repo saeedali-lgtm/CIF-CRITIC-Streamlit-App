@@ -20,3 +20,30 @@
 [data-testid="stMetric"]{border:1px solid #dce4d7;border-top:2px solid #c5a35d;border-radius:13px;background:#fffef9;padding:16px;box-shadow:0 5px 14px #073d3b05}.table-card,.glass-panel{box-shadow:0 6px 20px #073d3b05!important;border-color:#dce4d7!important}.footer-note{border-top:1px solid #d8ddce!important;color:#758273!important;font-size:11px!important;margin-top:30px!important}.three-d-divider{display:none}
 @media(max-width:800px){.cif-masthead{padding:22px 22px 0}.cif-hero-layout{grid-template-columns:1fr}.cif-orbit{display:none}.cif-edition{display:none}.cif-method-grid{grid-template-columns:1fr}.cif-hero-bottom{flex-wrap:wrap}.cif-workspace-heading{display:block}.cif-workspace-heading>span{display:block;margin-top:12px}.cif-author{font-size:12px}.cif-eyebrow{font-size:8px;letter-spacing:1px}.stTabs [data-baseweb="tab"]{padding:10px 12px!important}.block-container{padding-left:1rem!important;padding-right:1rem!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* Readable light controls, including when Streamlit follows a dark OS theme. */
+:root,html,body,.stApp{color-scheme:light!important}
+[data-testid="stFileUploaderDropzone"]{background:linear-gradient(115deg,#edf6ee,#fbf8ed)!important;border:1px solid #b7cdbb!important;border-radius:12px!important;color:#213e36!important;box-shadow:inset 0 1px 0 #fff!important}
+[data-testid="stFileUploaderDropzone"] *{color:#213e36!important}
+[data-testid="stFileUploaderDropzone"] button{background:linear-gradient(110deg,#c7a35b,#eddba9)!important;border:1px solid #a4843e!important;border-radius:9px!important;color:#153e34!important;min-height:44px;box-shadow:0 3px 9px #a1863320!important}
+[data-testid="stFileUploaderDropzone"] button:hover{background:#e8d294!important;border-color:#806225!important}
+[data-testid="stFileUploaderDropzone"] button:focus-visible{outline:3px solid #08736a!important;outline-offset:3px}
+[data-testid="stFileUploaderDropzoneInstructions"] span,[data-testid="stFileUploaderDropzoneInstructions"] small{color:#496252!important;opacity:1!important}
+[data-testid="stFileUploaderFile"], [data-testid="stFileUploaderFileData"]{background:#f2f7ee!important;color:#213e36!important;border-radius:8px}
+[data-testid="stFileUploaderFile"] *{color:#213e36!important}
+[data-baseweb="select"]>div,[data-baseweb="input"],[data-baseweb="base-input"],[data-baseweb="textarea"],input[type="text"],input[type="number"],textarea{background:#fffef8!important;color:#213e36!important;border-color:#bacbb8!important;caret-color:#07554f!important}
+[data-baseweb="select"] span,[data-baseweb="select"] input,[data-baseweb="select"] svg{color:#213e36!important;fill:currentColor!important}
+[data-baseweb="popover"],[role="listbox"],[role="listbox"] li,[data-baseweb="menu"],[data-baseweb="menu"] li{background:#fffef8!important;color:#213e36!important}
+[role="option"]:hover,[role="option"][aria-selected="true"]{background:#e3efdf!important;color:#123e34!important}
+[data-testid="stExpander"]{background:#f8fbf3!important;border:1px solid #c6d6bf!important;border-radius:12px!important}
+[data-testid="stExpander"] details,[data-testid="stExpander"] summary,[data-testid="stExpanderDetails"]{background:#f8fbf3!important;color:#213e36!important}
+[data-testid="stTooltipContent"]{background:#fffdf5!important;color:#213e36!important;border:1px solid #c6d6bf!important}
+[data-testid="stTooltipContent"] p{color:#213e36!important}
+[data-testid="stAlert"]{background:#edf5ea!important;color:#213e36!important;border:1px solid #c4d6bf!important}
+[data-testid="stAlert"] p,[data-testid="stAlert"] svg{color:#213e36!important}
+[data-testid="stSlider"] [data-testid="stTickBar"]{color:#213e36!important}
+[data-testid="stHeader"]{background:#f5f7f0eb!important;color:#213e36!important}
+[data-testid="stHeader"] button{color:#213e36!important}
+[data-testid="stNumberInput"] button{background:#edf4e8!important;color:#213e36!important}
+[data-testid="stDataFrame"]{border:1px solid #c9d7c2;border-radius:10px;overflow:hidden}
+@media(max-width:600px){[data-testid="stFileUploaderDropzone"]{padding:16px 12px!important;gap:12px!important}[data-testid="stFileUploaderDropzoneInstructions"]{min-width:0!important}[data-testid="stFileUploaderDropzone"] button{min-width:105px}}
+
