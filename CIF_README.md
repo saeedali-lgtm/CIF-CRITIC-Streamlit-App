@@ -19,6 +19,8 @@ The three modules operate independently; outputs are not automatically passed
 between modules. Download the template for the selected method and upload the
 completed Excel workbook. Results include downloadable intermediate matrices.
 
+[Open CIF online](https://cif-dematel-swara-waspas.streamlit.app/)
+
 ## Web and Android editions
 
 The online edition runs the same Python analytical code. The Android edition

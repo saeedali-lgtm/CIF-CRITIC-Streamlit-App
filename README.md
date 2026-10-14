@@ -1,5 +1,7 @@
 ## CIF-DEMATEL / CIF-SWARA / CIF-WASPAS
 
+[Open CIF online](https://cif-dematel-swara-waspas.streamlit.app/) · [Android and web downloads](https://github.com/saeedali-lgtm/CIF-CRITIC-Streamlit-App/releases/tag/cif-v1.0.0)
+
 The complete Python application remains available as
 [`CIF_DEMATEL_SWARA_WASPAS_Final.py`](CIF_DEMATEL_SWARA_WASPAS_Final.py),
 matching the filename in the paper's supplementary material.

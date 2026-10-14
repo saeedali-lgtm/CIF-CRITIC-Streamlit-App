@@ -571,7 +571,7 @@ def dematel_run_app():
         st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div id="upload-workbook"></div>', unsafe_allow_html=True)
     st.markdown('\n        <div class="upload-zone-card upload-zone-gold-final" style="background:radial-gradient(circle at 9% 12%, rgba(255,255,255,0.45), transparent 28%), radial-gradient(circle at 88% 16%, rgba(255,244,210,0.38), transparent 32%), linear-gradient(135deg,#6F4E00 0%,#9B7208 23%,#D4AF37 52%,#FFD166 74%,#8A6508 100%) !important; border:2px solid rgba(255,244,210,0.98) !important; box-shadow:0 30px 68px rgba(111,78,0,0.38), 0 0 0 5px rgba(255,209,102,0.22), 0 6px 0 rgba(255,255,255,0.28) inset !important;">\n            <div class="upload-zone-badge" style="display:inline-block; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; background:rgba(16,42,67,0.36) !important; border:1px solid rgba(255,255,255,0.58) !important; padding:8px 16px !important; border-radius:999px !important; font-weight:950 !important; letter-spacing:0.9px !important; text-transform:uppercase !important; text-shadow:0 2px 10px rgba(0,0,0,0.35) !important;">Upload Zone</div>\n            <div class="upload-zone-title" style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-size:28px !important; font-weight:950 !important; line-height:1.25 !important; margin:30px 0 26px 0 !important; text-shadow:0 4px 16px rgba(0,0,0,0.68) !important;">Upload Your CIF-DEMATEL Excel Workbook</div>\n            <div id="force-upload-desc-white" class="upload-zone-description" style="margin-top:18px !important; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-size:16px !important; font-weight:900 !important; line-height:1.9 !important; text-shadow:0 4px 18px rgba(0,0,0,0.78) !important; background:rgba(16,42,67,0.22) !important; border:1px solid rgba(255,255,255,0.24) !important; border-radius:14px !important; padding:12px 14px !important;"><span style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-weight:900 !important; text-shadow:0 4px 18px rgba(0,0,0,0.78) !important;">Load expert direct-influence matrices. The app will calculate aggregated CIF matrices, crisp direct-relation matrix, normalized relation matrix, total relation matrix, and cause/effect classification.</span></div>\n        </div>\n        ', unsafe_allow_html=True)
-    uploaded_file = st.file_uploader('Upload CIF-DEMATEL Excel workbook', type=['xlsx'])
+    uploaded_file = st.file_uploader('Upload CIF-DEMATEL Excel workbook', type=['xlsx'], max_upload_size=10)
     if uploaded_file is None:
         st.info('Download the template from the sidebar, fill your expert matrices, then upload the workbook here.')
         return
@@ -1033,7 +1033,7 @@ def swara_run_app():
         st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div id="upload-workbook"></div>', unsafe_allow_html=True)
     st.markdown('\n        <div class="upload-zone-card upload-zone-gold-final" style="background:radial-gradient(circle at 9% 12%, rgba(255,255,255,0.45), transparent 28%), radial-gradient(circle at 88% 16%, rgba(255,244,210,0.38), transparent 32%), linear-gradient(135deg,#6F4E00 0%,#9B7208 23%,#D4AF37 52%,#FFD166 74%,#8A6508 100%) !important; border:2px solid rgba(255,244,210,0.98) !important; box-shadow:0 30px 68px rgba(111,78,0,0.38), 0 0 0 5px rgba(255,209,102,0.22), 0 6px 0 rgba(255,255,255,0.28) inset !important;">\n            <div class="upload-zone-badge" style="display:inline-block; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; background:rgba(16,42,67,0.36) !important; border:1px solid rgba(255,255,255,0.58) !important; padding:8px 16px !important; border-radius:999px !important; font-weight:950 !important; letter-spacing:0.9px !important; text-transform:uppercase !important; text-shadow:0 2px 10px rgba(0,0,0,0.35) !important;">Upload Zone</div>\n            <div class="upload-zone-title" style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-size:28px !important; font-weight:950 !important; line-height:1.25 !important; margin:30px 0 26px 0 !important; text-shadow:0 4px 16px rgba(0,0,0,0.68) !important;">Upload Your CIF-SWARA Excel Workbook</div>\n            <div id="force-upload-desc-white" class="upload-zone-description" style="margin-top:18px !important; color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-size:16px !important; font-weight:900 !important; line-height:1.9 !important; text-shadow:0 4px 18px rgba(0,0,0,0.78) !important; background:rgba(16,42,67,0.22) !important; border:1px solid rgba(255,255,255,0.24) !important; border-radius:14px !important; padding:12px 14px !important;"><span style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; opacity:1 !important; font-weight:900 !important; text-shadow:0 4px 18px rgba(0,0,0,0.78) !important;">Load expert criterion-evaluation vectors. The app will calculate aggregated CIF vectors, circular radii, score values, comparative coefficients, relative weights, final normalized weights, and criterion ranking.</span></div>\n        </div>\n        ', unsafe_allow_html=True)
-    uploaded_file = st.file_uploader('Upload CIF-SWARA Excel workbook', type=['xlsx'])
+    uploaded_file = st.file_uploader('Upload CIF-SWARA Excel workbook', type=['xlsx'], max_upload_size=10)
     if uploaded_file is None:
         st.info('Download the template from the sidebar, fill your expert evaluation sheets, then upload the workbook here.')
         return
@@ -1774,7 +1774,7 @@ def waspas_waspas_app() -> None:
         st.download_button('Download input template', data=waspas_create_waspas_template(), file_name='cif_waspas_input_template.xlsx', mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', key='main_template')
     with right:
         waspas_upload_zone_card()
-        uploaded = st.file_uploader('Upload CIF-WASPAS Excel workbook', type=['xlsx', 'xls'], key='waspas_upload')
+        uploaded = st.file_uploader('Upload CIF-WASPAS Excel workbook', type=['xlsx', 'xls'], key='waspas_upload', max_upload_size=10)
     if not uploaded:
         st.info('Download the template, fill the expert decision matrices and criterion weights, then upload the workbook.')
         return
@@ -1991,7 +1991,7 @@ def render_dematel_tab():
             "Load expert direct-influence matrices. The module calculates aggregated CIF matrices, crisp and normalized direct relations, total relations, prominence, relation, cause/effect groups, and network edges.",
             "DEMATEL Upload Zone",
         )
-        uploaded_file = st.file_uploader("Upload CIF-DEMATEL Excel workbook", type=["xlsx", "xls"], key="suite_dematel_upload")
+        uploaded_file = st.file_uploader("Upload CIF-DEMATEL Excel workbook", type=["xlsx", "xls"], key="suite_dematel_upload", max_upload_size=10)
 
     influence_scale_df = dematel_create_influence_scale_dataframe()
     expert_weight_scale_df = dematel_create_expert_weight_scale_dataframe()
@@ -2158,7 +2158,7 @@ def render_swara_tab():
             "Load expert criterion-evaluation vectors. The module calculates aggregated CIF vectors, circular radii, score values, comparative coefficients, relative weights, final normalized weights, and criterion ranks.",
             "SWARA Upload Zone",
         )
-        uploaded_file = st.file_uploader("Upload CIF-SWARA Excel workbook", type=["xlsx", "xls"], key="suite_swara_upload")
+        uploaded_file = st.file_uploader("Upload CIF-SWARA Excel workbook", type=["xlsx", "xls"], key="suite_swara_upload", max_upload_size=10)
 
     scale_df = swara_create_scale_dataframe(scale)
     with st.expander("View the active CIF-SWARA linguistic scale"):
